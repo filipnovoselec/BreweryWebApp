@@ -28,12 +28,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Kućna Craft Pivovara</a>
+            <a class="navbar-brand" ui-sref="home">Kućna Craft Pivovara</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Pive u izradi <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a ui-sref="beer">Pive u izradi <span class="sr-only">(current)</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recepti <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -54,7 +54,8 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li ><a ui-sref="login">Login</a></li>
+                <li ><a ui-sref="home">Logout</a></li>
             </ul>
         </div>
     </div>
