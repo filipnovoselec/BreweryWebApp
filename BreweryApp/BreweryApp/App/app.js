@@ -7,25 +7,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('home',
         {
             url: '/',
-            templateUrl: '/Views/Homepage.html',
+            templateUrl: 'Views/Homepage.html',
             controller: 'homepageController'
         })
         .state('login',
         {
             url: '/login',
-            templateUrl: '/Views/Login.html',
+            templateUrl: 'Views/Login.html',
             controller: 'loginController'
         })
         .state('recipe',
         {
             url: '/recipe/{name}',
-            templateUrl: '/Views/Recipe.html',
+            templateUrl: 'Views/Recipe.html',
             controller: 'recipeController'
         })
         .state('beer',
         {
             url: '/beer',
-            templateUrl: '/Views/Beer.html',
+            templateUrl: 'Views/Beer.html',
             controller: 'beerController'
         });
 });
