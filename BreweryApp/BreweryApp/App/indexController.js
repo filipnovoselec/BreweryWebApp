@@ -14,6 +14,8 @@
 
         $rootScope.auth = null;
 
+        $rootScope.CurrentBeer = true;
+
         $scope.logout = function () {
             $rootScope.auth = null;
             $state.go('home');
