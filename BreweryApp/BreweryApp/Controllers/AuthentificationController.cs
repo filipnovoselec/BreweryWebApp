@@ -18,7 +18,7 @@ namespace AngularJSWebApiEmpty.Controllers
         {
             using (var db = new BreweryEntities())
             {
-                var user = db.Authentification.First(b => b.UserName == username);
+                var user = db.Authentification.FirstOrDefault(b => b.UserName == username);
                 if (user!=null)
                 {
                     if (user.Password == password)

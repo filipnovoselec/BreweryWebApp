@@ -26,5 +26,9 @@ namespace AngularJSWebApiEmpty.Models
         }
     
         public DbSet<Authentification> Authentification { get; set; }
+        public DbSet<Recipes> Recipes { get; set; }
+        public DbSet<test> test { get; set; }
+        public DbSet<Beers> Beers { get; set; }
+        public DbSet<Temperatures> Temperatures { get; set; }
     }
 }

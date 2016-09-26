@@ -12,9 +12,6 @@
         var vm = this;
         vm.title = 'homepageController';
 
-        console.log($rootScope);
-        $scope.submit = function () {
-            console.log('nesto');
-        };
+       
     }
 })();

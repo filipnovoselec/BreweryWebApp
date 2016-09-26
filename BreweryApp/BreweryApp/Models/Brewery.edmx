@@ -13,8 +13,65 @@
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Beers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Profile" Type="text" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ingredients" Type="text" Nullable="false" />
+          <Property Name="Instructions" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Temperatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Temp" Type="float" Nullable="false" />
+          <Property Name="BeerId" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="te" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Temperatures_Beers_fk">
+          <End Role="Beers" Type="Self.Beers" Multiplicity="1" />
+          <End Role="Temperatures" Type="Self.Temperatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Temperatures">
+              <PropertyRef Name="BeerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BreweryModelStoreContainer">
           <EntitySet Name="Authentification" EntityType="Self.Authentification" Schema="Brewery" store:Type="Tables" />
+          <EntitySet Name="Beers" EntityType="Self.Beers" Schema="Brewery" store:Type="Tables" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipes" Schema="Brewery" store:Type="Tables" />
+          <EntitySet Name="Temperatures" EntityType="Self.Temperatures" Schema="Brewery" store:Type="Tables" />
+          <EntitySet Name="test" EntityType="Self.test" Schema="Brewery" store:Type="Tables" />
+          <AssociationSet Name="Temperatures_Beers_fk" Association="Self.Temperatures_Beers_fk">
+            <End Role="Beers" EntitySet="Beers" />
+            <End Role="Temperatures" EntitySet="Temperatures" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -30,7 +87,66 @@
         </EntityType>
         <EntityContainer Name="BreweryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authentification" EntityType="Self.Authentification" />
+          <EntitySet Name="Recipes" EntityType="BreweryModel.Recipes" />
+          <EntitySet Name="test" EntityType="BreweryModel.test" />
+          <EntitySet Name="Beers" EntityType="BreweryModel.Beers" />
+          <EntitySet Name="Temperatures" EntityType="BreweryModel.Temperatures" />
+          <AssociationSet Name="Temperatures_Beers_fk" Association="BreweryModel.Temperatures_Beers_fk">
+            <End Role="Beers" EntitySet="Beers" />
+            <End Role="Temperatures" EntitySet="Temperatures" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Profile" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ingredients" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Instructions" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="te" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Beers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Temperatures" Relationship="BreweryModel.Temperatures_Beers_fk" FromRole="Beers" ToRole="Temperatures" />
+        </EntityType>
+        <EntityType Name="Temperatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Temp" Type="Single" Nullable="false" />
+          <Property Name="BeerId" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Beers" Relationship="BreweryModel.Temperatures_Beers_fk" FromRole="Temperatures" ToRole="Beers" />
+        </EntityType>
+        <Association Name="Temperatures_Beers_fk">
+          <End Type="BreweryModel.Beers" Role="Beers" Multiplicity="1" />
+          <End Type="BreweryModel.Temperatures" Role="Temperatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Temperatures">
+              <PropertyRef Name="BeerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -43,6 +159,47 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="BreweryModel.Recipes">
+              <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="Ingredients" ColumnName="Ingredients" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="test">
+            <EntityTypeMapping TypeName="BreweryModel.test">
+              <MappingFragment StoreEntitySet="test">
+                <ScalarProperty Name="te" ColumnName="te" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beers">
+            <EntityTypeMapping TypeName="BreweryModel.Beers">
+              <MappingFragment StoreEntitySet="Beers">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temperatures">
+            <EntityTypeMapping TypeName="BreweryModel.Temperatures">
+              <MappingFragment StoreEntitySet="Temperatures">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="BeerId" ColumnName="BeerId" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

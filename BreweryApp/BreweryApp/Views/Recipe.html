@@ -5,6 +5,17 @@
 	<meta charset="utf-8" />
 </head>
 <body>
+<h1>{{recipe.Name}}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="profile"><h2>Profil</h2><p style="white-space: pre-line">{{recipe.Profile}}</p></div>
+            <div id="ingredients"><h2>Sastojci</h2><p style="white-space: pre-line">{{recipe.Ingredients}}</p></div>
+        </div>
+        <img src="{{recipe.Picture}}" class="col-md-6" id="image"/>
+    </div>
+    <div id="instructions"><h2>Upute</h2><p style="white-space: pre-line">{{recipe.Instructions}}</p></div>
+</div>
 
 </body>
 </html>

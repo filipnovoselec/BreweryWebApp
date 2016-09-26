@@ -198,6 +198,9 @@
       <DependentUpon>Brewery.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
+    <Content Include="Content\flipclock.css" />
+    <Content Include="Scripts\flipclock.js" />
+    <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
@@ -217,10 +220,14 @@
     <Compile Include="Controllers\AuthentificationController.cs" />
     <Compile Include="Controllers\BeerController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\SerialController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Authentification.cs">
+      <DependentUpon>Brewery.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Beers.cs">
       <DependentUpon>Brewery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Brewery.Context.cs">
@@ -236,6 +243,15 @@
     <Compile Include="Models\Brewery1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Brewery.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Recipes.cs">
+      <DependentUpon>Brewery.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Temperatures.cs">
+      <DependentUpon>Brewery.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\test.cs">
       <DependentUpon>Brewery.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

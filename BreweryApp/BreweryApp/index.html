@@ -14,10 +14,12 @@
     <script src="App/homepageController.js"></script>
     <script src="App/beerController.js"></script>
     <script src="Scripts/loading-bar.js"></script>
-    <!--<script src="Scripts/angular-chart.js"></script>-->
-    <script src="Scripts/jquery.countdown.js"></script>
-    <script src="Scripts/Chart.js"></script>
+    <script src="Scripts/Chart.min.js"></script>
+    <script src="Scripts/angular-chart.js"></script>
     <script src="Scripts/jquery-3.1.0.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.countdown.js"></script>
+    <link href="Content/flipclock.css" rel="stylesheet" />
+    <script src="Scripts/flipclock.min.js"></script>
     <link href="Content/css/bootstrap.css" rel="stylesheet" />
     <link href="Content/css/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -42,8 +44,13 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a ng-hide="!CurrentBeer" ui-sref="beer">Pive u izradi <span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recepti <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recepti <span class="caret"></span></a>
+
                         <ul class="dropdown-menu" role="menu">
+                            <li data-ng-repeat="recipe in recipeList"><a ui-sref="recipe({name:'{{recipe}}'})">{{recipe}}</a></li>
+                        </ul>
+
+                        <!--<ul class="dropdown-menu" role="menu">
                             <li><a ui-sref="recipe({name:'Pale Ale'})">Pale Ale</a></li>
                             <li><a ui-sref="recipe({name:'Lager'})">Lager</a></li>
                             <li><a ui-sref="recipe({name:'Stout'})">Stout</a></li>
@@ -51,7 +58,8 @@
                             <li><a ui-sref="recipe({name:'Indian Ale'})">Indian Ale</a></li>
                             <li class="divider"></li>
                             <li><a ui-sref="recipe({name:'Tamno pivo'})">Tamno pivo</a></li>
-                        </ul>
+                        </ul>-->
+
                     </li>
                 </ul>
                 <!--<form class="navbar-form navbar-left" role="search">

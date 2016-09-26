@@ -5,15 +5,17 @@
         .module('app')
         .controller('beerController', beerController);
 
-    beerController.$inject = ['$location']; 
+    beerController.$inject = ['$location','$scope']; 
 
-    function beerController($location) {
+    function beerController($location, $scope) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'beerController';
 
-        activate();
-
-        function activate() { }
+        var clock = $('.clock').FlipClock(3600 * 24 * 3,{
+            clockFace: 'DailyCounter',
+            countdown: true,
+            showSeconds: false
+        });
     }
 })();
