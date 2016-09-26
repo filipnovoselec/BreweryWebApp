@@ -2,24 +2,25 @@
 <html>
 <head>
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
 <body>
-<h1 class="h1">Ime Pive</h1>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 " id="progressbar">
-            <div class="progress progress-striped active">
-                <div class="progress-bar" style="width: 60%"></div>
+    <h1 class="h1">{{Beer.Name}}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 " id="progressbar">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" ng-style="progress"></div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="clock"></div>
             </div>
         </div>
-        <div class="col-md-6 ">
-            <div  class="clock"></div>
-        </div>
+        <canvas id="line" class="chart chart-line" chart-data="data"
+                chart-labels="labels" chart-series="series" chart-options="options"
+                chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
     </div>
-    <canvas class="chart chart-line" chart-data="temperatures" chart-labels="times"
-            chart-series="series" chart-options="options" chart-dataset-override="datasetOverride"></canvas>
-</div>
 
 </body>
 </html>

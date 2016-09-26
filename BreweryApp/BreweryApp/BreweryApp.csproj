@@ -245,6 +245,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Brewery.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompleteBeer.cs" />
     <Compile Include="Models\Recipes.cs">
       <DependentUpon>Brewery.tt</DependentUpon>
     </Compile>
