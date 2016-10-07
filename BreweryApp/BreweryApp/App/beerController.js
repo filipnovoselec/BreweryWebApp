@@ -12,10 +12,24 @@
         var vm = this;
         vm.title = 'beerController';
 
-        $http({
-            method: "GET",
-            url: "api/Beer/GetBeer"
-        })
+        var connection = $.hubConnection();
+        var proxy = connection.createHubProxy('BeerHub');
+        proxy.on('signalUpdate',
+            function (response) {
+                updateData();
+            });
+        connection.start();
+
+        updateData();
+
+
+
+        function updateData() {
+
+            $http({
+                method: "GET",
+                url: "Beer/GetBeer"
+            })
             .success(function (response) {
                 $scope.Beer = response;
 
@@ -25,11 +39,8 @@
                     showSeconds: false
                 });
 
-                $scope.percentage = (1 - clock.getTime() / $scope.Beer.TotalTime) * 100;
+                $scope.percentage = (1 - $scope.Beer.Time / $scope.Beer.TotalTime) * 100;
                 $scope.progress = { width: $scope.percentage + '%' };
-
-                console.log($scope.Beer.ReadTime);
-
 
                 $scope.labels = $scope.Beer.ReadTime;
                 $scope.series = ['Temperature'];
@@ -48,13 +59,15 @@
                               display: true,
                               position: 'left'
                           }
-                          
+
                         ]
                     }
                 };
             });
+        }
 
-        
+
+
 
 
     }

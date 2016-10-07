@@ -17,9 +17,10 @@
         //Provjera ima li pive u proizvodnji
         $http({
             method: "GET",
-            url: "api/Beer/GetInfo"
+            url: "Beer/GetInfo"
         })
         .success(function (response) {
+                console.log(response);
             $rootScope.CurrentBeer = response;
         });
         
@@ -32,11 +33,11 @@
             $scope.recipeList = response;
         });
 
-        $scope.logout = function () {
+        $scope.logout = function() {
             $rootScope.auth = null;
             $state.go('home');
 
 
-        }
+        };
     }
 })();
